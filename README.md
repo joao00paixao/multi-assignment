@@ -35,7 +35,7 @@ For their inter-communication it is very simple. Kubernetes provides us with a r
 
 We can apply the example to this context, but the frontend here would be microservice B and the image uploading service microservice A. They would be able to intercommunicate with eachother and be scalable.
 
-For example ms-a.mycompany.com (with an ingress rule for this specific endpoint type, or the service's clusterIP which is constant and doesn't change) could live as the connection address in the application configuration of the ms-b application and ms-b would be able to communicate with ms-a, all internally.
+For example ms-a.mycompany.com (with an ingress rule for this specific endpoint type, or the service's clusterIP which is constant and doesn't change) could live as the connection address in the ms-b application configuration and ms-b would be able to communicate with ms-a, all internally.
 
 ![image](docs/architecture/internal-microservice-communication.png)
 
@@ -43,12 +43,11 @@ For example ms-a.mycompany.com (with an ingress rule for this specific endpoint 
 
 >Explain strategies for seamless integration of microservices and handling potential issues.
 
-For multiple replicas of one microservice the answer is in the previous answer and can be resolved using a K8S Service. The generated address will forward the request to one the available microservice pods (load balancing).
+For multiple replicas of one microservice the answer is in the previous question's answer and can be resolved using a K8S Service. The generated address will forward the request to one of the available microservice pods (load balancing).
 
-For different microservices and intercommunication there are several factors we must handle or take account of:
+For different microservices intercommunication there are several factors we must handle or take account of:
 
 - Network Isolation
-
 - Availability
   - Load balancing
   - Automatic Scaling
@@ -60,7 +59,7 @@ For different microservices and intercommunication there are several factors we 
   - Tracing
   - Alerting
 
-If the microservices need to communicate with eachother only they should be internal. If they need to communicate with external clients then we can either whitelist an IP address/range OR create a public endpoint.
+If the microservices need to communicate with eachother and live in the same network they should be internal. If they need to communicate with external clients then we can either whitelist an IP address/range OR create a public endpoint.
 
 If there is a lot of demand on one pod we should increase the amount of replicas in order to split the demand and not overwork one pod. This can also be said of the cluster's node itself, we can have pods in different worker nodes so we can split the work also between different servers. We can also load balance users between all active pods.
 

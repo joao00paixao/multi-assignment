@@ -171,7 +171,7 @@ The DELETE request will use a path parameter of {id} to delete that resource
 
 - DELETE /events/{id}
 
-## 2. **Performance Considerations:**
+## 3. **Performance Considerations:**
 
 There are a few approaches for optimizing data **retrieval** with and without **caching**, let's start with data retrieval without caching.
 

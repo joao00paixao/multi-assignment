@@ -221,5 +221,30 @@ There are two types of data that we have to take account of when saving and/or d
 
 ### Personal Data
 
+Personal data means any information relating to an **identified or identifiable natural** person ('data subject'). 
 
+In other words, any information that is clearly about a particular person. In certain circumstances, this could include anything from someone’s name to their physical appearance.
 
+### Sensitive Personal Data
+
+In its most basic definition, sensitive data is a specific set of “special categories” that must be treated with extra security. These categories are: 
+
+Racial or ethnic origin;  
+Political opinions;   
+Religious or philosophical beliefs;  
+Genetic data;  
+Biometric data (where processed to uniquely identify someone). 
+
+### Measures
+
+Some cloud providers do not have **GDPR compliance** as they do not own and/or process their data storage. So each provider must be properly **selected**.
+
+**Data separation** is also a key factor, personal data and sensitive personal data should **not be stored together**. 
+
+Both types of data must either be **encrypted or pseudonymised**.
+
+For our case, personal data should be **hashed, encrypted and then stored**. Encryption keys should be **secret and intransmutable**. For decryption we'll only compare the hashed values.
+
+For displaying personal data in logs, metrics, etc, we should redact parts of the sensitive data. For example: joao00paixao@gmail.com would show up as ***********@gmail.com for example.
+
+Apart from encryption measures we should also have **backup measures** to not lose information. This can be obtained through cloud backup services or on-demand backup services.

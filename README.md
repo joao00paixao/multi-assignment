@@ -281,9 +281,17 @@ I think the best synchronization tool is **good documentation/guidance** on how 
 
 Also a good approach would be to have an *examples/samples folder in the repository with examples of integrations* that can be shared within the team for knowledge sharing.
 
-## 8. **Testing Protocols**
+## 8. **Coding Guidelines**
 
-Unit Testing only becomes a possibility if the codebase is well written. If methods follow DRY and SOLID principles and there are abstractions it becomes easier to unit test the logic inside of the methods as long as you're able to mock the external dependencies like database, storage, environment etc.
+Everyone has preferences when it comes to writing code. I am a person that mostly focuses on readability with a good mix of performance too. I try writing clean code and following clean architecture like Domain Driven Design and design patterns.
+
+I also write code that is testable, applying DRY and SOLID principals.
+
+What I would avoid is: inconsistente variable naming, repeating code, having small and concise methods, instantiating dependencies inside of methods and not classes which causes the class to not be testable, acronyms or one to three letter names on variables, incorrect indentation and so on.
+
+## 9. **Testing Protocols**
+
+Unit Testing only becomes a possibility if the codebase is well written. If methods follow DRY and SOLID principals and there are abstractions it becomes easier to unit test the logic inside of the methods as long as you're able to mock the external dependencies like database, storage, environment etc.
 
 With abstractions we're able to abstract the implementation details and create a "mock" object on which we can configure the final result/return so we can unit test a class/method.
 

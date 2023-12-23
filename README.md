@@ -61,13 +61,13 @@ For different microservices intercommunication there are several factors we must
 
 If the microservices need to communicate with eachother and live in the same network they should be **internal**. If they need to communicate with external clients then we can either **whitelist** an IP address/range OR create a **public endpoint**.
 
-If there is a lot of demand on one pod we should *increase the amount of replicas* in order to split the demand and not overwork one pod. This can also be said of the cluster's node itself, we can have pods in different worker nodes so we can split the work also between different servers. We can also *load balance* users between all active pods.
+If there is a lot of demand on one pod we should **increase the amount of replicas** in order to split the demand and not overwork one pod. This can also be said of the cluster's node itself, we can have pods in different worker nodes so we can split the work also between different servers. We can also **load balance** users between all active pods.
 
-If a microservice crashes it must *revive itself and be active*, we need to atleast have one pod running.
+If a microservice crashes it must **revive itself and be active**, we need to atleast have one pod running.
 
-For any other potential issues like application exceptions, pod logs and cluster errors we should have good structured *logging* according to the type of log. We should treat errors and exceptions with higher priority and we need observability or alerting of this. 
+For any other potential issues like application exceptions, pod logs and cluster errors we should have good structured **logging** according to the type of log. We should treat errors and exceptions with higher priority and we need observability or alerting of this. 
 
-Metrics are also very important in order to *measure resource consumption*, vitals or executed actions during the application's timeframe. 
+Metrics are also very important in order to **measure resource consumption**, vitals or executed actions during the application's timeframe. 
 
 Tracing is useful but necessary in order to **measure an application's performance** on certain actions.
 
@@ -77,7 +77,7 @@ Tracing is useful but necessary in order to **measure an application's performan
 
 An event campaign is a an individual or set of events organized for a period of time. It could be a discount/sale phase like black friday, or maybe a new website launch phase, etc.
 
-The three main attributes would be the **one-to-many relationship** between an event campaign and it's events, the *start and end dates* of events as they might not be permanent events and a **name/id** so we can distinct events.
+The three main attributes would be the **one-to-many relationship** between an event campaign and it's events, the **start and end dates** of events as they might not be permanent events and a **name/id** so we can distinct events.
 
 ### Database Schema
 
@@ -86,7 +86,7 @@ The three main attributes would be the **one-to-many relationship** between an e
 
 Apart from the columns there are also a few considerations, we need to create **indexes** for the most often accessed columns, like the Id, Name, StartDate and EndDate column so we can optimize reads. We can use a clustered or non-clustered index, in this case we'll use a clustered as it's faster.
 
-The Id columns will be *Primary Keys* with an automatic identity incrementation of 1 starting at 0, so each row inserted the Id will be incremented.
+The Id columns will be **Primary Keys** with an automatic identity incrementation of 1 starting at 0, so each row inserted the Id will be incremented.
 
 I have created a Schema so we can **separate** these tables logically. The Schema could have been called Events but I decided to name it Marketing.
 

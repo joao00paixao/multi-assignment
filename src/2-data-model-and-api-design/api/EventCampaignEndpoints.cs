@@ -119,11 +119,6 @@ public static class EventCampaignEndpoints
         return result;
     }
 
-
-
-
-
-
     // Get event from: /events/{id}
     public static Result<Event> GetEvent(int id){
         var marketingEvent = _eventRepository.GetEvent(id);

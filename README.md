@@ -167,3 +167,51 @@ The DELETE request will use a path parameter of {id} to delete that resource
 
 - DELETE /events/{id}
 
+## 2. **Performance Considerations:**
+
+There are a few approaches for optimizing data **retrieval** with and without **caching**, let's start with data retrieval without caching.
+
+### Without Caching
+
+Database queries must be **optimized** and tables should have **indexes** for fast data retrieval. A query filter should be applied directly on index columns for fast scans.
+
+**Common Table Expressions** should also be used for large datasets as these are cached in memory and are good for reusability.
+
+Database **load** is very important, if there are a lot of **write and read** operations **locks** can happen and data retrieval can be slow, to improve this we can do two things.
+
+Database **sharding** if we have a lot of records, want load balancing and reliability. Sharding **distributes** data across various servers and if one node fails, the traffic is redirected to the alive nodes.
+
+Database **partioning** splits a large table within a server and is useful for large table queries.
+
+Considering our context we can expect a few thousands of records per table (campaign events and events) after many years, therefore we do not need sharding or partioning.
+
+### With Caching
+
+Data in caches is often data that does not frequently change, and I believe our events tables are a good application of caching.
+
+Data in caches should have a TTL (time to live) or a process that updates a key value or the entire cache by action or by time.
+
+We can implement two types of caching. Request caching or distributed caching.
+
+**Request/response caching** is exactly what it is, it caches requests' responses and returns them if they're not expirated/invalid. This caching is per application and often requires a small TTL, not the best approach for our use case but it's still useful.
+
+**Distributed caching** means having a cache engine hosted somewhere where we can access it often and can be used by multiple services at the same time, and as it's memory cached it's very fast but volatile.
+
+This would probably be the best approach to scale our systems as we'll have hundreds of thousands of requests. Each microservice application can have a memory cache read of the distributed cache for even faster reads.
+
+This is all dependent on the infrequent changes of the data, if a change happens the distributed cache must be updated and the application cache must also be updated.
+
+For this update we can use a message queue system to update the distributed cache and to then update the application cache. 
+
+The distributed cache and application cache act as a message consumer, and when a message is received it queries the database and refreshes the cache.
+
+A few example of **technologies** used for this:
+
+- Redis and Redis Clusters (distributed caching, clusters)
+- Memcached (application cache)
+- RabbitMQ, Azure Service Bus, AWS SQS
+
+
+
+
+

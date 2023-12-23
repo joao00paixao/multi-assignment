@@ -127,11 +127,13 @@ We could also have a GET endpoint to get all campaign events but I did not imple
 
 The POST request must have a body of a JSON object with the following format:
 
-    {  
-     "name": "xxxxx",  
-     "startDate": "yyyy/MM/dd hh:mm:ss",  
-     "endDate": "yyyy/MM/dd hh:mm:ss"  
-    }
+```json
+  {  
+    "name": "xxxxx",  
+    "startDate": "yyyy/MM/dd hh:mm:ss",  
+    "endDate": "yyyy/MM/dd hh:mm:ss"  
+  }
+```
 
 - POST /campaign-events/
 
@@ -152,12 +154,14 @@ The DELETE request will use a path parameter of {id} to delete that resource
 
 The POST request must have a body of a JSON object with the following format:
 
-    {  
-     "name": "xxxxx",  
-     "campaignEventId": "xxxx"
-     "startDate": "yyyy/MM/dd hh:mm:ss",  
-     "endDate": "yyyy/MM/dd hh:mm:ss"  
-    }
+```json
+  {  
+    "name": "xxxxx",  
+    "campaignEventId": "xxxx"
+    "startDate": "yyyy/MM/dd hh:mm:ss",  
+    "endDate": "yyyy/MM/dd hh:mm:ss"  
+  }
+```
 
 - POST /vents/
 
@@ -211,7 +215,11 @@ A few example of **technologies** used for this:
 - Memcached (application cache)
 - RabbitMQ, Azure Service Bus, AWS SQS
 
+## 4. **Security Measures:**
 
+There are two types of data that we have to take account of when saving and/or displaying. One of those are personal data and the other sensitive personal data.
+
+### Personal Data
 
 
 

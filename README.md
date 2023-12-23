@@ -235,7 +235,7 @@ Religious or philosophical beliefs;
 Genetic data;  
 Biometric data (where processed to uniquely identify someone). 
 
-### Measures
+### Security Measures
 
 Some cloud providers do not have **GDPR compliance** as they do not own and/or process their data storage. So each provider must be properly **selected**.
 
@@ -248,3 +248,14 @@ For our case, personal data should be **hashed, encrypted and then stored**. Enc
 For displaying personal data in logs, metrics, etc, we should redact parts of the sensitive data. For example: joao00paixao@gmail.com would show up as ***********@gmail.com for example.
 
 Apart from encryption measures we should also have **backup measures** to not lose information. This can be obtained through cloud backup services or on-demand backup services.
+
+## 5. **Data Management:**
+
+We can manage ACID (Atomic, Consistent, Isolated and Durable) through our database system. To keep things consistent we should use transactions. If a piece of code fails we should have retry policies or a unit of work design pattern.
+
+Data consistency also consists of having a consistent distributed cache data, if a change occurs in the database, it must be replicated onto the cache.
+
+To avoid locks, we could also use read replicas for read only operations. When a write happens, the change is replicated to the replicas. This would help solve some concurrency issues. The best approach would be sharding to avoid concurrency and high demand issues.
+
+## 6. **Problem-Solving Scenarios:**
+

@@ -1,6 +1,12 @@
 ## Security Protocol Guide
 
-### Storing Personal Data
+### Logging Security
+
+Redaction and pseudonymisation can be achieved through libraries and logging middlewares.
+
+Example: https://andrewlock.net/redacting-sensitive-data-with-microsoft-extensions-compliance/
+
+### Personal Data Security
 
 All personal data must be stored after hashing and encrypting.
 

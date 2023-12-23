@@ -259,3 +259,35 @@ To avoid locks, we could also use read replicas for read only operations. When a
 
 ## 6. **Problem-Solving Scenarios:**
 
+I think this is a very abstract question/problem, here are some of the ways I would tackle an issue.
+
+If it's an issue that requires maintenace, fix or hotfix I would first start by where the issue was **located** and if there was any **logs** associated with the exception. If there's no exception and it's just a logical error I would try and find if the issue is associated with a request, if it's not an request and some UI logic then I would have a pretty good idea where the issue is.
+
+If it's an issue in a request I would need to know the **request path** and the **parameters**, for that I would need to simulate a request on the UI/client. After having a concrete request path what I could do is debug and find the issue.
+
+If the issue is dependent on production data the complexity increases a bit more as I would need to either **restore** a new local/dev database from a production database and if that's not possible I would need to **simulate the data** accordingly.
+
+If it's an issue on a new feature while developing I would try to **divide it into smaller problems** and tackle one by one, create unit tests and create an efficient local testing environment.
+
+If it's a performance issue I would contemplate **tracing, profiling and simulating the environment** as close as possible and see which methods are taking most memory or cpu. From there I would try **optimizing / refactoring** following the 80-20 rule which I will mention below.
+
+**The Pareto principle**, also known as the 80/20 rule, states that 80% of the effects come from 20% of the causes. In other words, you can achieve **80% of the benefits** of refactoring by focusing on 20% of the code. To apply this principle, you need to prioritize the code that has the most value, impact, or usage in your system.
+
+## 7. **Team Collaboration:**
+
+I have created an API integration guide for all types of clients under src/1-microservices-architecture-and-integration which would help frontend developers **integrate** the API in their applications.
+
+I think the best synchronization tool is **good documentation/guidance** on how to integrate systems in other types of applications. Apart from that there can be a **process** for frontend developers to request certain API endpoints with their desired data. 
+
+Also a good approach would be to have an *examples/samples folder in the repository with examples of integrations* that can be shared within the team for knowledge sharing.
+
+## 8. **Testing Protocols**
+
+Unit Testing only becomes a possibility if the codebase is well written. If methods follow DRY and SOLID principles and there are abstractions it becomes easier to unit test the logic inside of the methods as long as you're able to mock the external dependencies like database, storage, environment etc.
+
+With abstractions we're able to abstract the implementation details and create a "mock" object on which we can configure the final result/return so we can unit test a class/method.
+
+Apart from that there're certain rules that we can follow like the AAA principle of Arrange, Act, Assert where we first setup the input data and dependencies, we act on it and we assert the results.
+
+Test Driven Development can also be a good approach when first starting a new feature/class. The main focus is in starting writing the tests and the results before writing the actual class, this is a good approach as it will decrease a lot of possible bugs.
+

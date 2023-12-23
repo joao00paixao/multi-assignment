@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "15011c68-0c3e-452a-9d99-bb8414824927",
+		"name": "Event Campaigns API Documentation",
+		"description": "This collection represents the API endpoints for the event campaigns and it's sub-events.  \n  \nAn event campaign can have multiple events. (sub-events)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31635717"
+	},
+	"item": [
+		{
+			"name": "campaign-events-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.mycompany.com/campaign-events/{id}",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"campaign-events",
+						"{id}"
+					]
+				},
+				"description": "Returns a campaign event by the id if it exists."
+			},
+			"response": []
+		},
+		{
+			"name": "campaign-events-id-events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.mycompany.com/campaign-events/{id}/events",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"campaign-events",
+						"{id}",
+						"events"
+					]
+				},
+				"description": "Returns a campaign event's sub-events if any exist."
+			},
+			"response": []
+		},
+		{
+			"name": "campaign-events-live",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.mycompany.com/campaign-events/live",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"campaign-events",
+						"live"
+					]
+				},
+				"description": "Returns all live campaign events if any is active."
+			},
+			"response": []
+		},
+		{
+			"name": "campaign-event-create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n\"name\": \"xxxxx\",  \r\n\"startDate\": \"yyyy/MM/dd hh:mm:ss\",  \r\n\"endDate\": \"yyyy/MM/dd hh:mm:ss\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "api.mycompany.com/campaign-events/",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"campaign-events",
+						""
+					]
+				},
+				"description": "Create a new campaign event."
+			},
+			"response": []
+		},
+		{
+			"name": "campaign-event-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "api.mycompany.com/campaign-events/{id}",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"campaign-events",
+						"{id}"
+					]
+				},
+				"description": "Deletes a campaign event by the id if it exists."
+			},
+			"response": []
+		},
+		{
+			"name": "events-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.mycompany.com/events/{id}",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"events",
+						"{id}"
+					]
+				},
+				"description": "Returns an event by the id if it exists."
+			},
+			"response": []
+		},
+		{
+			"name": "events-live",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "api.mycompany.com/events/live",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"events",
+						"live"
+					]
+				},
+				"description": "Returns all live events if any is active."
+			},
+			"response": []
+		},
+		{
+			"name": "events-create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n\"name\": \"xxxxx\",  \r\n\"campaignEventId\": \"xxxx\",\r\n\"startDate\": \"yyyy/MM/dd hh:mm:ss\",  \r\n\"endDate\": \"yyyy/MM/dd hh:mm:ss\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "api.mycompany.com/events/",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"events",
+						""
+					]
+				},
+				"description": "Creates an event under a specific campaign event if the campaign event exists."
+			},
+			"response": []
+		},
+		{
+			"name": "events-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "api.mycompany.com/events/{id}",
+					"host": [
+						"api",
+						"mycompany",
+						"com"
+					],
+					"path": [
+						"events",
+						"{id}"
+					]
+				},
+				"description": "Deletes an event by its id if it exists."
+			},
+			"response": []
+		}
+	]
+}

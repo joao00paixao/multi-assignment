@@ -1,0 +1,43 @@
+## Here we define the microservice A application as a deployment for Kubernetes, with the amount of replicas as a constant, some limits and which port we must expose on the Pod. 
+
+# We then create a service and attach it to the deployment via the label selector, and we expose the service on port 8080 - redirecting it to the Pod's port 80. 
+
+# This Service is a default service and will create a cluster IP with the format: 10.25.25.34:8080, which we will be able to use in our application's configuration. 
+
+# End result: Microservice A pods expose port 80 from which the Service will create a constant address forwarding to any of the available pods' 80 port.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-a-deployment
+  labels:
+    app: ms-a
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ms-a
+  template:
+    metadata:
+      labels:
+        app: ms-a
+    spec:
+      containers:
+      - name: ms-a-container
+        image: ghcr.io/joao00paixao/microservice-a:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-a-service
+spec:
+  selector:
+    app: ms-a
+  ports:
+  - port: 8080
+    targetPort: 80

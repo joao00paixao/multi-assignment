@@ -1,0 +1,27 @@
+## Here we define the microservice B application as a deployment for Kubernetes, with the amount of replicas as a constant, some limits and which port we must expose on the Pod. 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-b-deployment
+  labels:
+    app: ms-b
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ms-b
+  template:
+    metadata:
+      labels:
+        app: ms-b
+    spec:
+      containers:
+      - name: ms-b-container
+        image: ghcr.io/joao00paixao/microservice-b:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
